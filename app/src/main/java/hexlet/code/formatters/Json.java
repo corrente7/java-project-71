@@ -1,17 +1,19 @@
 package hexlet.code.formatters;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hexlet.code.Differ;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Stylish {
-
-    public static String formatToStylish(Map<String, Object> file1, Map<String, Object> file2) {
+public class Json {
+    public static String formatToJson(Map<String, Object> file1, Map<String, Object> file2)
+            throws JsonProcessingException {
         Map<String, Object> result = new LinkedHashMap<>();
         Set<String> unionKeys = Differ.putSortedKeysToSet(file1, file2);
-        for (String key: unionKeys) {
+        for (String key : unionKeys) {
             if (file1.keySet().contains(key) && !Differ.isEqual(file1, file2, key)) {
                 result.put("  " + key, file1.get(key));
             } else if (file1.keySet().contains(key) && !file2.keySet().contains(key)) {
@@ -23,17 +25,7 @@ public class Stylish {
                 result.put("+ " + key, file2.get(key));
             }
         }
-        return toString(result);
-    }
-    public static String toString(Map<String, Object> map) {
-        String all = "";
-        if (map.isEmpty()) {
-            return "{}";
-        }
-        for (Map.Entry<String, Object> entry: map.entrySet()) {
-            String str = "  " + entry.getKey() + ": "  +  entry.getValue() + '\n';
-            all = all.concat(str);
-        }
-        return "{\n" + all + "}";
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(result);
     }
 }

@@ -5,7 +5,6 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -21,10 +20,10 @@ public class App implements Callable {
     @Option(names = { "-f", "--format" }, description = "output format [default: stylish]")
    File format;
 
-    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/info1.yaml")
+    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/stylish1.json")
    private static String filepath1;
 
-    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/nadi777/info2.yaml")
+    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/nadi777/stylish2.json")
    private static String filepath2;
 
     public static void main(String[] args) throws Exception {
@@ -37,7 +36,7 @@ public class App implements Callable {
     public Object call() throws Exception {
         System.out.println(Parser.detectTypeFile(getFilepath1()));
         System.out.println(Parser.detectTypeFile(getFilepath2()));
-        System.out.println(Differ.generate(getFilepath1(), getFilepath2(), "stylish"));
+        System.out.println(Differ.generate(getFilepath1(), getFilepath2(), "json"));
 //        Map<String, Object> file1 = Map.of(
 //                "date_end", "2020-06-10T23:59:59+03:00",
 //                "description", "product1",
