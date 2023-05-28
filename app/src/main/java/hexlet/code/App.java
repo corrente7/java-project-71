@@ -4,7 +4,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.File;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -17,8 +16,8 @@ public class App implements Callable {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
    boolean help;
 
-    @Option(names = { "-f", "--format" }, description = "output format [default: stylish]")
-   File format;
+    @Option(names = { "-f", "--format" }, description = "output format [default: stylish]", defaultValue = "json")
+    private static String format;
 
     @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/stylish1.json")
    private static String filepath1;
@@ -27,16 +26,15 @@ public class App implements Callable {
    private static String filepath2;
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello World!");
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
 
     @Override
     public Object call() throws Exception {
-        System.out.println(Parser.detectTypeFile(getFilepath1()));
-        System.out.println(Parser.detectTypeFile(getFilepath2()));
-        System.out.println(Differ.generate(getFilepath1(), getFilepath2(), "json"));
+//        System.out.println(Parser.detectTypeFile(getFilepath1()));
+//        System.out.println(Parser.detectTypeFile(getFilepath2()));
+        System.out.println(Differ.generate(getFilepath1(), getFilepath2(), format));
 //        Map<String, Object> file1 = Map.of(
 //                "date_end", "2020-06-10T23:59:59+03:00",
 //                "description", "product1",
@@ -60,5 +58,6 @@ public class App implements Callable {
     public static String getFilepath2() {
         return filepath2;
     }
+
 }
 

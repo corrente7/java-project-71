@@ -4,13 +4,13 @@ import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.stream.Collectors;
-
+import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 
 public class Differ {
 
@@ -33,7 +33,23 @@ public class Differ {
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
-
+    public static Map mapDiff(Map<String, Object> file1, Map<String, Object> file2) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        Set<String> unionKeys = Differ.putSortedKeysToSet(file1, file2);
+        for (String key : unionKeys) {
+            if (file1.keySet().contains(key) && !Differ.isEqual(file1, file2, key)) {
+                result.put("  " + key, file1.get(key));
+            } else if (file1.keySet().contains(key) && !file2.keySet().contains(key)) {
+                result.put("- " + key, file1.get(key));
+            } else if (file2.keySet().contains(key) && !file1.keySet().contains(key)) {
+                result.put("+ " + key, file2.get(key));
+            } else if (file1.keySet().contains(key) && file2.keySet().contains(key)) {
+                result.put("- " + key, file1.get(key));
+                result.put("+ " + key, file2.get(key));
+            }
+        }
+        return result;
+    }
     public static boolean isEqual(Map<String, Object> file1, Map<String, Object> file2, String key) {
         Object object1 = file1.get(key);
         Object object2 = file2.get(key);
