@@ -5,6 +5,7 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -20,10 +21,10 @@ public class App implements Callable {
     @Option(names = { "-f", "--format" }, description = "output format [default: stylish]")
    File format;
 
-    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/file1.json")
+    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/info1.yaml")
    private static String filepath1;
 
-    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/nadi777/file2.json")
+    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/nadi777/info2.yaml")
    private static String filepath2;
 
     public static void main(String[] args) throws Exception {
@@ -34,10 +35,22 @@ public class App implements Callable {
 
     @Override
     public Object call() throws Exception {
-        //System.out.println(Differ.getData(getFilepath1()));
-        //System.out.println(Differ.getData(getFilepath1()));
-        System.out.println(Differ.toString
-                (Differ.generate(Differ.getData(getFilepath1()), Differ.getData(getFilepath2()))));
+        System.out.println(Parser.detectTypeFile(getFilepath1()));
+        System.out.println(Parser.detectTypeFile(getFilepath2()));
+        System.out.println(Differ.generate(getFilepath1(), getFilepath2(), "stylish"));
+//        Map<String, Object> file1 = Map.of(
+//                "date_end", "2020-06-10T23:59:59+03:00",
+//                "description", "product1",
+//                "discount_label", "1+1",
+//                "id", 11111
+//        );
+//        Map<String, Object> file2 = Map.of(
+//                "barcode", "3113097501031",
+//                "description", "product2",
+//                "discount_label", "1+1",
+//                "price_is_from", false
+//        );
+//        System.out.println(Differ.generate(file1, file2));
         return 0;
     }
 

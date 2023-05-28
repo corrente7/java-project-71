@@ -1,2 +1,5 @@
 run-dist:
 	./build/install/app/bin/app
+test:
+	./gradlew test
+	.PHONY: build
