@@ -6,10 +6,7 @@ import java.util.Map;
 public class Stylish {
 
     public static String formatToStylish(Map<String, Object> file1, Map<String, Object> file2) {
-        return toString(Differ.mapDiff(file1, file2));
-    }
-
-    public static String toString(Map<String, Object> map) {
+        Map<String, Object> map = Differ.mapDiff(file1, file2);
         String all = "";
         if (map.isEmpty()) {
             return "{}";

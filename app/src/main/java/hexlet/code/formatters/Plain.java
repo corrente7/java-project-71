@@ -11,14 +11,14 @@ public class Plain {
 
     public static String formatToPlain(Map<String, Object> file1, Map<String, Object> file2) {
         List<String> result = new LinkedList<>();
-        Set<String> unionKeys = Differ.putSortedKeysToSet(file1, file2);
+        Set<String> unionKeys = Differ.sortKeys(file1, file2);
         for (String key: unionKeys) {
             if (file1.keySet().contains(key) && !file2.keySet().contains(key)) {
                 result.add("Property '" + key + "' was removed");
             } else if (file2.keySet().contains(key) && !file1.keySet().contains(key)) {
                 result.add("Property '" + key + "' was added with value: " + replaceValues(file2.get(key)));
             } else if (file1.keySet().contains(key)
-                            && file2.keySet().contains(key) && Differ.isEqual(file1, file2, key)) {
+                            && file2.keySet().contains(key) && Differ.isNotEqual(file1, file2, key)) {
                 result.add("Property '" + key + "' was updated. "
                                 + "From " + replaceValues(file1.get(key)) + " to " + replaceValues(file2.get(key)));
             }

@@ -16,13 +16,13 @@ public class App implements Callable {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
    boolean help;
 
-    @Option(names = { "-f", "--format" }, description = "output format [default: stylish]", defaultValue = "json")
+    @Option(names = { "-f", "--format" }, description = "output format [default: stylish]", defaultValue = "stylish")
     private static String format;
 
-    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/stylish1.json")
+    @Parameters(index = "0", description = "path to first file", defaultValue = "/home/nadi777/file1.json")
    private static String filepath1;
 
-    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/nadi777/stylish2.json")
+    @Parameters(index = "1", description = "path to second file", defaultValue = "/home/nadi777/file2.json")
    private static String filepath2;
 
     public static void main(String[] args) throws Exception {
