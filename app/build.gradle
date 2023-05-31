@@ -37,3 +37,10 @@ compileJava {
     options.release = 17
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+
