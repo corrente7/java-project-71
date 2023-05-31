@@ -15,6 +15,8 @@ report:
 lint:
 	gradle checkstyleMain
 
-build-run: build run
+build:
+    gradle clean
+    gradle installDist
 
 .PHONY: build
