@@ -4,16 +4,16 @@ run-dist:
 	./build/install/app/bin/app
 
 run:
-	./gradlew run
+	gradle run
 
 test:
-	./gradlew test
+	gradle test
 
 report:
-	./gradlew jacocoTestReport
+	gradle jacocoTestReport
 
 lint:
-	./gradlew checkstyleMain checkstyleTest
+	gradle checkstyleMain
 
 build-run: build run
 
