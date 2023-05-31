@@ -1,18 +1,15 @@
+package hexlet.code;
 
- package hexlet.code;
-
-//import org.junit.jupiter.api.Test;
-
-//import java.io.File;
-//import java.util.Map;
-//
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
-import static hexlet.code.Differ.*;
+import static hexlet.code.Differ.generate;
+import static hexlet.code.Differ.isNotEqual;
+import static hexlet.code.Differ.mapDiff;
+import static hexlet.code.Differ.sortKeys;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -26,7 +23,8 @@ public class DifferTest {
         String absolutePath = file.getAbsolutePath();
         String filepath1 = absolutePath + "/test1.json";
         String filepath2 = absolutePath + "/test2.json";
-        String expected = "\n" +
+        String expected = "\n"
+                +
                 "  Property 'barcode' was added with value: '3113097501031'\n"
                 +
                 "  Property 'chars2' was updated. From [complex value] to false\n"
@@ -91,13 +89,13 @@ public class DifferTest {
                 "price_is_from", false
         );
         Map<String, Object> expected1 = Map.of(
-                "  discount_label","1+1",
+                "  discount_label", "1+1",
                 "+ barcode", "3113097501031",
                 "+ description", "product2",
                 "+ price_is_from", false,
                 "- date_end", "2020-06-10T23:59:59+03:00",
                 "- description", "product1",
-                "- id",11111
+                "- id", 11111
         );
         Map<String, Object> file3 = Map.of(
         );
