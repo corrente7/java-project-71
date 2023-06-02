@@ -22,6 +22,7 @@ public class Parser {
                 = mapper.readValue(new File(filepath), new TypeReference<Map<String, Object>>() { });
         return map;
     }
+
     public static Map detectTypeFile(String filepath) throws Exception {
         Map<String, Object> map = null;
         if (filepath.endsWith(".json")) {

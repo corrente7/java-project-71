@@ -36,6 +36,7 @@ public class Plain {
         }
         return "\n" + all;
     }
+
     public static Object replaceValues(Object object) {
         if (object instanceof String) {
             return "\'" + object + "\'";

@@ -33,6 +33,7 @@ public class Differ {
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
+
     public static Map<String, Object> mapDiff(Map<String, Object> file1, Map<String, Object> file2) {
         Map<String, Object> result = new LinkedHashMap<>();
         Set<String> unionKeys = Differ.sortKeys(file1, file2);
@@ -50,6 +51,7 @@ public class Differ {
         }
         return result;
     }
+
     public static boolean isNotEqual(Map<String, Object> file1, Map<String, Object> file2, String key) {
         Object object1 = file1.get(key);
         Object object2 = file2.get(key);

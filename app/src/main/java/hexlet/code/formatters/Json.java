@@ -6,6 +6,7 @@ import hexlet.code.Differ;
 import java.util.Map;
 
 public class Json {
+
     public static String formatToJson(Map<String, Object> file1, Map<String, Object> file2)
             throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
