@@ -31,10 +31,10 @@ public class Plain {
             return "{}";
         }
         for (String item: list) {
-            String str = "  " + item + '\n';
+            String str = item + '\n';
             all = all.concat(str);
         }
-        return "\n" + all;
+        return all;
     }
 
     public static Object replaceValues(Object object) {
