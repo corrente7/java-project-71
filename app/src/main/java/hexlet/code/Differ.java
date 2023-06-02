@@ -25,6 +25,10 @@ public class Differ {
         };
     }
 
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
+    }
+
     public static Set<String> sortKeys(Map<String, Object> file1, Map<String, Object> file2) {
         Set<String> unionKeys = new HashSet<>();
         unionKeys.addAll(file1.keySet());
