@@ -26,27 +26,27 @@ public class DifferTest {
         String format = "plain";
         String expected = "Property 'barcode' was added with value: '3113097501031'\n"
                 +
-        "Property 'chars2' was updated. From [complex value] to false\n"
+            "Property 'chars2' was updated. From [complex value] to false\n"
                 +
-        "Property 'checked' was updated. From false to true\n"
+            "Property 'checked' was updated. From false to true\n"
                 +
-        "Property 'date_end' was removed\n"
+            "Property 'date_end' was removed\n"
                 +
-        "Property 'default' was updated. From null to [complex value]\n"
+            "Property 'default' was updated. From null to [complex value]\n"
                 +
-        "Property 'description' was updated. From 'product1' to 'product2'\n"
+            "Property 'description' was updated. From 'product1' to 'product2'\n"
                 +
-        "Property 'id' was updated. From 11111 to null\n"
+            "Property 'id' was updated. From 11111 to null\n"
                 +
-        "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
+            "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
                 +
-        "Property 'numbers3' was removed\n"
+            "Property 'numbers3' was removed\n"
                 +
-        "Property 'numbers4' was added with value: [complex value]\n"
+            "Property 'numbers4' was added with value: [complex value]\n"
                 +
-        "Property 'obj1' was added with value: [complex value]\n"
+            "Property 'obj1' was added with value: [complex value]\n"
                 +
-        "Property 'price_is_from' was added with value: false";
+            "Property 'price_is_from' was added with value: false";
 
         assertThat(generate(filepath1, filepath2, format)).isEqualTo(expected);
     }
