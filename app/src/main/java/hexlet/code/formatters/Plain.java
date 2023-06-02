@@ -34,7 +34,7 @@ public class Plain {
             String str = item + '\n';
             all = all.concat(str);
         }
-        return all;
+        return all.substring(0, all.length() - 1);
     }
 
     public static Object replaceValues(Object object) {
