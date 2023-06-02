@@ -8,7 +8,7 @@ test:
 	gradle test
 
 report:
-	./gradlew jacocoTestReport
+	gradle jacocoTestReport
 
 lint:
 	gradle checkstyleMain
