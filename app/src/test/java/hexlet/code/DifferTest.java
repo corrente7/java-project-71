@@ -23,6 +23,7 @@ public class DifferTest {
         String absolutePath = file.getAbsolutePath();
         String filepath1 = absolutePath + "/test1.json";
         String filepath2 = absolutePath + "/test2.json";
+        String format = "plain";
         String expected = "\n"
                 +
                 "  Property 'barcode' was added with value: '3113097501031'\n"
@@ -48,7 +49,7 @@ public class DifferTest {
                 "  Property 'obj1' was added with value: [complex value]\n"
                 +
                 "  Property 'price_is_from' was added with value: false\n";
-        assertThat(generate(filepath1, filepath2, "plain")).isEqualTo(expected);
+        assertThat(generate(filepath1, filepath2, format)).isEqualTo(expected);
     }
     @Test
     public void sortKeysTest() {
