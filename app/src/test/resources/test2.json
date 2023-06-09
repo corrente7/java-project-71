@@ -1,8 +1,8 @@
 {
-  "barcode": "3113097501031",
-  "description": "product2",
-  "discount_label": "1+1",
-  "price_is_from": false,
+  "setting1": "Another value",
+  "setting2": 300,
+  "setting3": "none",
+  "key2": "value2",
   "numbers1": [1, 2, 3, 4],
   "numbers2": [22, 33, 44, 55],
   "id": null,

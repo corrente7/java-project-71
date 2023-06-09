@@ -1,8 +1,3 @@
-BS: 1650
-name: Bristol
-to_id: 1
-to_name: LONDON
-obj1: {
-    nestedKey: value,
-    isNested: true
-  }
+timeout: 20
+verbose: true
+host: hexlet.io
