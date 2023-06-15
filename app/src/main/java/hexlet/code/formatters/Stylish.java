@@ -1,6 +1,5 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differ;
 import java.util.Map;
 
 public class Stylish {

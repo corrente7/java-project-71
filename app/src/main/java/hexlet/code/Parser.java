@@ -25,13 +25,15 @@ public class Parser {
     }
 
     public static Map detectTypeFile(String filepath) throws Exception {
-        Map<String, Object> map = new HashMap<>();
         if (filepath.endsWith(".json")) {
-            map = getJsonData(filepath);
-        } else if (filepath.endsWith(".yaml")) {
-            map = getYamlData(filepath);
+            return getJsonData(filepath);
         }
-        return map;
+        if (filepath.endsWith(".yaml")) {
+            return getYamlData(filepath);
+        }
+        else {
+            throw new Error("Format is unsupported.");
+        }
     }
 
 }
