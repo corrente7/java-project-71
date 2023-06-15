@@ -1,16 +1,9 @@
 package hexlet.code;
+
 import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
-
-
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.LinkedHashSet;
-import java.util.LinkedHashMap;
 
 public class Differ {
 

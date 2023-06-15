@@ -1,9 +1,12 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differ;
-
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 
 public class Submethods {
 
