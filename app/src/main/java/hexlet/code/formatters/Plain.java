@@ -24,7 +24,7 @@ public class Plain {
         return toString(result);
     }
 
-    public static String toString(List<String> list) {
+    private static String toString(List<String> list) {
         String all = "";
         if (list.isEmpty()) {
             return "{}";
@@ -36,7 +36,7 @@ public class Plain {
         return all.substring(0, all.length() - 1);
     }
 
-    public static Object replaceValues(Object object) {
+    private static Object replaceValues(Object object) {
         if (object instanceof String) {
             return "\'" + object + "\'";
         } else if (object == null) {

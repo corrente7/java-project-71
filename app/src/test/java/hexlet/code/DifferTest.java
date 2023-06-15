@@ -11,11 +11,11 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class DifferTest {
+public final class DifferTest {
 
-    String filepathInput1;
-    String filepathInput2;
-    String absolutePath;
+    private String filepathInput1;
+    private String filepathInput2;
+    private String absolutePath;
 
     @BeforeEach
     void initEach() throws IOException {
@@ -70,9 +70,9 @@ public class DifferTest {
 
     @Test
     public void generateYamlPlainTest() throws Exception {
-        filepathInput1 = absolutePath + "/test3.yaml";
-        filepathInput2 = absolutePath + "/test4.yaml";
-        String filepath3 = absolutePath + "/test_yaml_plain";
+        filepathInput1 = absolutePath + "/test3.yml";
+        filepathInput2 = absolutePath + "/test4.yml";
+        String filepath3 = absolutePath + "/test_yml_plain";
         String expected = Files.readString(Paths.get(filepath3)).replaceAll("\r\n", "\n");
 
         assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "plain"));
@@ -80,9 +80,9 @@ public class DifferTest {
 
     @Test
     public void generateYamlStylishTest() throws Exception {
-        filepathInput1 = absolutePath + "/test3.yaml";
-        filepathInput2 = absolutePath + "/test4.yaml";
-        String filepath3 = absolutePath + "/test_yaml_stylish";
+        filepathInput1 = absolutePath + "/test3.yml";
+        filepathInput2 = absolutePath + "/test4.yml";
+        String filepath3 = absolutePath + "/test_yml_stylish";
         String expected = Files.readString(Paths.get(filepath3)).replaceAll("\r\n", "\n");
 
         assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "stylish"));
@@ -90,9 +90,9 @@ public class DifferTest {
 
     @Test
     public void generateYamlJsonTest() throws Exception {
-        filepathInput1 = absolutePath + "/test3.yaml";
-        filepathInput2 = absolutePath + "/test4.yaml";
-        String filepath3 = absolutePath + "/test_yaml_json";
+        filepathInput1 = absolutePath + "/test3.yml";
+        filepathInput2 = absolutePath + "/test4.yml";
+        String filepath3 = absolutePath + "/test_yml_json";
         String expected = Files.readString(Paths.get(filepath3)).replaceAll("\r\n", "\n");
 
         assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "json"));
@@ -100,9 +100,9 @@ public class DifferTest {
 
     @Test
     public void generateYamlDefaultTest() throws Exception {
-        filepathInput1 = absolutePath + "/test3.yaml";
-        filepathInput2 = absolutePath + "/test4.yaml";
-        String filepath3 = absolutePath + "/test_yaml_stylish";
+        filepathInput1 = absolutePath + "/test3.yml";
+        filepathInput2 = absolutePath + "/test4.yml";
+        String filepath3 = absolutePath + "/test_yml_stylish";
         String expected = Files.readString(Paths.get(filepath3)).replaceAll("\r\n", "\n");
 
         assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "stylish"));

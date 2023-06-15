@@ -9,12 +9,12 @@ import java.util.concurrent.Callable;
 @Command(name = "gendiff",
         description = "Compares two configuration files and shows a difference.")
 
-public class App implements Callable {
+public final class App implements Callable {
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
-   boolean version;
+   private boolean version;
 
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
-   boolean help;
+    private boolean help;
 
     @Option(names = { "-f", "--format" }, description = "output format [default: stylish]", defaultValue = "stylish")
     private static String format;

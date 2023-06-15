@@ -7,9 +7,6 @@ public class Stylish {
     public static String formatToStylish(Map<String, Object> file1, Map<String, Object> file2) {
         Map<String, Object> map = Submethods.mapDiff(file1, file2);
         String all = "";
-//        if (map.isEmpty()) {
-//            return "{}";
-//        }
         for (Map.Entry<String, Object> entry: map.entrySet()) {
             String str = "  " + entry.getKey() + ": "  +  entry.getValue() + '\n';
             all = all.concat(str);
