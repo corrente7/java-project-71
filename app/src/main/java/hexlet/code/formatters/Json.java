@@ -10,6 +10,6 @@ public class Json {
     public static String formatToJson(Map<String, Object> file1, Map<String, Object> file2)
             throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(Differ.mapDiff(file1, file2));
+        return objectMapper.writeValueAsString(Submethods.mapDiff(file1, file2));
     }
 }

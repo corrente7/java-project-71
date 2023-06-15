@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
@@ -24,7 +25,7 @@ public class Parser {
     }
 
     public static Map detectTypeFile(String filepath) throws Exception {
-        Map<String, Object> map = null;
+        Map<String, Object> map = new HashMap<>();
         if (filepath.endsWith(".json")) {
             map = getJsonData(filepath);
         } else if (filepath.endsWith(".yaml")) {
