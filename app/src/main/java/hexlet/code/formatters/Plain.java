@@ -14,11 +14,13 @@ public class Plain {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (entry.getKey().contains("-") && map.containsKey("+ " + entry.getKey().substring(2))) {
                 result.add("Property '" + entry.getKey().substring(2) + "' was updated. "
-                        + "From " + replaceValues(entry.getValue()) + " to " + replaceValues(map.get("+ " + entry.getKey().substring(2))));
+                        + "From " + replaceValues(entry.getValue()) + " to "
+                        + replaceValues(map.get("+ " + entry.getKey().substring(2))));
             } else if (entry.getKey().contains("-") && !map.containsKey("+ " + entry.getKey().substring(2))) {
                 result.add("Property '" + entry.getKey().substring(2) + "' was removed");
             } else if (entry.getKey().contains("+") && !map.containsKey("- " + entry.getKey().substring(2))) {
-                result.add("Property '" + entry.getKey().substring(2) + "' was added with value: " + replaceValues(entry.getValue()));
+                result.add("Property '" + entry.getKey().substring(2)
+                        + "' was added with value: " + replaceValues(entry.getValue()));
             }
         }
         String all = "";
