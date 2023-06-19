@@ -1,35 +1,31 @@
 package hexlet.code.formatters;
 
+import hexlet.code.Differ;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Plain {
 
     public static String formatToPlain(Map<String, Object> file1, Map<String, Object> file2) {
+        Map<String, Object> map = Differ.mapDiff(file1, file2);
         List<String> result = new LinkedList<>();
-        Set<String> unionKeys = Submethods.sortKeys(file1, file2);
-        for (String key: unionKeys) {
-            if (file1.keySet().contains(key) && !file2.keySet().contains(key)) {
-                result.add("Property '" + key + "' was removed");
-            } else if (file2.keySet().contains(key) && !file1.keySet().contains(key)) {
-                result.add("Property '" + key + "' was added with value: " + replaceValues(file2.get(key)));
-            } else if (file1.keySet().contains(key)
-                            && file2.keySet().contains(key) && Submethods.isNotEqual(file1, file2, key)) {
-                result.add("Property '" + key + "' was updated. "
-                                + "From " + replaceValues(file1.get(key)) + " to " + replaceValues(file2.get(key)));
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            if (entry.getKey().contains("-") && map.containsKey("+ " + entry.getKey().substring(2))) {
+                result.add("Property '" + entry.getKey().substring(2) + "' was updated. "
+                        + "From " + replaceValues(entry.getValue()) + " to " + replaceValues(map.get("+ " + entry.getKey().substring(2))));
+            } else if (entry.getKey().contains("-") && !map.containsKey("+ " + entry.getKey().substring(2))) {
+                result.add("Property '" + entry.getKey().substring(2) + "' was removed");
+            } else if (entry.getKey().contains("+") && !map.containsKey("- " + entry.getKey().substring(2))) {
+                result.add("Property '" + entry.getKey().substring(2) + "' was added with value: " + replaceValues(entry.getValue()));
             }
         }
-        return toString(result);
-    }
-
-    private static String toString(List<String> list) {
         String all = "";
-        if (list.isEmpty()) {
+        if (result.isEmpty()) {
             return "{}";
         }
-        for (String item: list) {
+        for (String item: result) {
             String str = item + '\n';
             all = all.concat(str);
         }
@@ -37,13 +33,15 @@ public class Plain {
     }
 
     private static Object replaceValues(Object object) {
+        if (object == null) {
+            return null;
+        }
         if (object instanceof String) {
             return "\'" + object + "\'";
-        } else if (object == null) {
-            return null;
-        } else if (object instanceof Integer || object instanceof Boolean) {
-            return object;
         }
-        return "[complex value]";
+        if (object instanceof Map || object instanceof List) {
+            return "[complex value]";
+        }
+        return object;
     }
 }
