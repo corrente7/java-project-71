@@ -4,7 +4,14 @@ import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
-import java.util.*;
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 public class Differ {
