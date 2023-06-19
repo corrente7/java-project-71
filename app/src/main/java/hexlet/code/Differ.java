@@ -4,12 +4,7 @@ import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.HashSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Differ {
@@ -52,7 +47,7 @@ public class Differ {
                 .collect(Collectors.toCollection(TreeSet::new));
         Map<String, Object> result = new LinkedHashMap<>();
         for (String key : unionKeys1) {
-            if (file1.keySet().contains(key) && compareifNull(file1.get(key), file2.get(key))) {
+            if (file1.keySet().contains(key) && Objects.equals(file1.get(key), file2.get(key))) {
                 result.put("  " + key, file1.get(key));
             } else if (file1.keySet().contains(key) && !file2.keySet().contains(key)) {
                 result.put("- " + key, file1.get(key));
@@ -65,9 +60,4 @@ public class Differ {
         }
         return result;
     }
-
-    private static boolean compareifNull(Object object1, Object object2) {
-        return (object1 == null || object2 == null ? object1 == object2 : object1.equals(object2));
-    }
-
 }
