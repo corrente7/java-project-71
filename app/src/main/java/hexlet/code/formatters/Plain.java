@@ -1,6 +1,6 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differ;
+import hexlet.code.MapComparator;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,18 +9,18 @@ import java.util.Map;
 public class Plain {
 
     public static String formatToPlain(Map<String, Object> file1, Map<String, Object> file2) {
-        Map<String, Object> map = Differ.mapDiff(file1, file2);
+        List<Map<String, Object>> list = MapComparator.mapDiff(file1, file2);
         List<String> result = new LinkedList<>();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (entry.getKey().contains("-") && map.containsKey("+ " + entry.getKey().substring(2))) {
-                result.add("Property '" + entry.getKey().substring(2) + "' was updated. "
-                        + "From " + replaceValues(entry.getValue()) + " to "
-                        + replaceValues(map.get("+ " + entry.getKey().substring(2))));
-            } else if (entry.getKey().contains("-") && !map.containsKey("+ " + entry.getKey().substring(2))) {
-                result.add("Property '" + entry.getKey().substring(2) + "' was removed");
-            } else if (entry.getKey().contains("+") && !map.containsKey("- " + entry.getKey().substring(2))) {
-                result.add("Property '" + entry.getKey().substring(2)
-                        + "' was added with value: " + replaceValues(entry.getValue()));
+        for (Map<String, Object> map: list) {
+            if (map.get("status") == "updated") {
+                result.add("Property '" + map.get("field") + "' was updated. "
+                        + "From " + replaceValues(map.get("old value")) + " to "
+                        + replaceValues(map.get("new value")));
+            } else if (map.get("status") == "removed") {
+                result.add("Property '" + map.get("field") + "' was removed");
+            } else if (map.get("status") == "added") {
+                result.add("Property '" + map.get("field")
+                        + "' was added with value: " + replaceValues(map.get("new value")));
             }
         }
         String all = "";

@@ -22,4 +22,13 @@ public class Parser {
                 = mapper.readValue(new File(filepath), new TypeReference<Map<String, Object>>() { });
         return map;
     }
+
+    static Map detectTypeFile(String filepath, String extension) throws Exception {
+        return switch (extension) {
+            case ".json" -> Parser.getJsonData(filepath);
+            case ".yaml" -> Parser.getYamlData(filepath);
+            case ".yml" -> Parser.getYamlData(filepath);
+            default -> throw new Error("Format is unsupported.");
+        };
+    }
 }
