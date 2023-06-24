@@ -10,11 +10,11 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 
 public final class App implements Callable {
-    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
-   private boolean version;
-
-    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
-    private boolean help;
+//    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
+//    private boolean version;
+//
+//    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
+//    private boolean help;
 
     @Option(names = { "-f", "--format" }, description = "output format [default: stylish]", defaultValue = "stylish")
     private static String format;
@@ -43,6 +43,5 @@ public final class App implements Callable {
     public static String getFilepath2() {
         return filepath2;
     }
-
 }
 
