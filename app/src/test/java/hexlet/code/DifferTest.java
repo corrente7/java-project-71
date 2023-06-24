@@ -14,9 +14,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public final class DifferTest {
 
     private String absolutePath;
-    private String expectedJson;
-    private String expectedPlain;
-    private String expectedStylish;
+    private static final String expectedJson;
+    private static final String expectedPlain;
+    private static final String expectedStylish;
+
+    static {
+        try {
+            expectedJson = readFile("src/test/resources/test_json");
+            expectedPlain= readFile("src/test/resources/test_plain");
+            expectedStylish = readFile("src/test/resources/test_stylish");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @BeforeEach
@@ -24,9 +34,11 @@ public final class DifferTest {
         String path = "src/test/resources";
         File file = new File(path);
         absolutePath = file.getAbsolutePath();
-        expectedJson = absolutePath + "/test_json";
-        expectedPlain = absolutePath + "/test_plain";
-        expectedStylish = absolutePath + "/test_stylish";
+
+
+    }
+    private static String readFile(String path) throws IOException {
+        return Files.readString(Paths.get(path)).replaceAll("\r\n", "\n");
     }
 
     @ParameterizedTest
@@ -34,9 +46,7 @@ public final class DifferTest {
     public void generatePlainTest(String extension) throws Exception {
         String filepathInput1 = absolutePath + "/test1." + extension;
         String filepathInput2 = absolutePath + "/test2." + extension;
-        String expected = Files.readString(Paths.get(expectedPlain)).replaceAll("\r\n", "\n");
-
-        assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "plain"));
+        assertEquals(expectedPlain, Differ.generate(filepathInput1, filepathInput2, "plain"));
     }
 
     @ParameterizedTest
@@ -44,9 +54,8 @@ public final class DifferTest {
     public void generateStylishTest(String extension) throws Exception {
         String filepathInput1 = absolutePath + "/test1." + extension;
         String filepathInput2 = absolutePath + "/test2." + extension;
-        String expected = Files.readString(Paths.get(expectedStylish)).replaceAll("\r\n", "\n");
 
-        assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "stylish"));
+        assertEquals(expectedStylish, Differ.generate(filepathInput1, filepathInput2, "stylish"));
         //assertThat(generate(filepathInput1, filepathInput2, format)).isEqualTo(expected);
     }
 
@@ -55,9 +64,8 @@ public final class DifferTest {
     public void generateJsonTest(String extension) throws Exception {
         String filepathInput1 = absolutePath + "/test1." + extension;
         String filepathInput2 = absolutePath + "/test2." + extension;
-        String expected = Files.readString(Paths.get(expectedJson)).replaceAll("\r\n", "\n");
 
-        assertEquals(expected, Differ.generate(filepathInput1, filepathInput2, "json"));
+        assertEquals(expectedJson, Differ.generate(filepathInput1, filepathInput2, "json"));
         //assertThat(generate(filepathInput1, filepathInput2, format)).isEqualTo(expected);
     }
 
@@ -66,9 +74,8 @@ public final class DifferTest {
     public void generateDefaultTest(String extension) throws Exception {
         String filepathInput1 = absolutePath + "/test1." + extension;
         String filepathInput2 = absolutePath + "/test2." + extension;
-        String expected = Files.readString(Paths.get(expectedStylish)).replaceAll("\r\n", "\n");
 
-        assertEquals(expected, Differ.generate(filepathInput1, filepathInput2));
+        assertEquals(expectedStylish, Differ.generate(filepathInput1, filepathInput2));
         //assertThat(generate(filepathInput1, filepathInput2, format)).isEqualTo(expected);
     }
 }

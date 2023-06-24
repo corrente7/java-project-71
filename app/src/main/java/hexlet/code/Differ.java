@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.List;
 import java.util.Map;
 
 public class Differ {
@@ -13,7 +14,8 @@ public class Differ {
         String extension2 = getExtension(filepath2);
         Map<String, Object> file1 = Parser.detectTypeFile(filepath1, extension1);
         Map<String, Object> file2 = Parser.detectTypeFile(filepath2, extension2);
-        return BaseFormatter.selectFormat(format, file1, file2);
+        List<Map<String, Object>> list = MapComparator.mapDiff(file1, file2);
+        return BaseFormatter.selectFormat(format, list);
     }
 
     public static String generate(String filepath1, String filepath2) throws Exception {

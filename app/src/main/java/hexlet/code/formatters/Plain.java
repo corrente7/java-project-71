@@ -8,25 +8,21 @@ import java.util.Map;
 
 public class Plain {
 
-    public static String formatToPlain(Map<String, Object> file1, Map<String, Object> file2) {
-        List<Map<String, Object>> list = MapComparator.mapDiff(file1, file2);
+    public static String formatToPlain(List<Map<String, Object>> list) {
         List<String> result = new LinkedList<>();
         for (Map<String, Object> map: list) {
             if (map.get("status") == "updated") {
                 result.add("Property '" + map.get("field") + "' was updated. "
-                        + "From " + replaceValues(map.get("old value")) + " to "
-                        + replaceValues(map.get("new value")));
+                        + "From " + convertObjectToString(map.get("old value")) + " to "
+                        + convertObjectToString(map.get("new value")));
             } else if (map.get("status") == "removed") {
                 result.add("Property '" + map.get("field") + "' was removed");
             } else if (map.get("status") == "added") {
                 result.add("Property '" + map.get("field")
-                        + "' was added with value: " + replaceValues(map.get("new value")));
+                        + "' was added with value: " + convertObjectToString(map.get("new value")));
             }
         }
         String all = "";
-        if (result.isEmpty()) {
-            return "{}";
-        }
         for (String item: result) {
             String str = item + '\n';
             all = all.concat(str);
@@ -34,9 +30,9 @@ public class Plain {
         return all.substring(0, all.length() - 1);
     }
 
-    private static Object replaceValues(Object object) {
+    private static String convertObjectToString(Object object) {
         if (object == null) {
-            return null;
+            return "null";
         }
         if (object instanceof String) {
             return "\'" + object + "\'";
@@ -44,6 +40,6 @@ public class Plain {
         if (object instanceof Map || object instanceof List) {
             return "[complex value]";
         }
-        return object;
+        return object.toString();
     }
 }

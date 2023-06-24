@@ -5,15 +5,16 @@ import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
+import java.util.List;
 import java.util.Map;
 
 public class BaseFormatter {
-    public static String selectFormat(String format, Map<String, Object> file1, Map<String, Object> file2)
+    public static String selectFormat(String format, List<Map<String, Object>> list)
             throws JsonProcessingException {
         return switch (format) {
-            case "stylish" -> Stylish.formatToStylish(file1, file2);
-            case "plain" -> Plain.formatToPlain(file1, file2);
-            case "json" -> Json.formatToJson(file1, file2);
+            case "stylish" -> Stylish.formatToStylish(list);
+            case "plain" -> Plain.formatToPlain(list);
+            case "json" -> Json.formatToJson(list);
             default  ->  throw new Error(format + " is unsupported.");
         };
     }

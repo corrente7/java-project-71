@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class Stylish {
 
-    public static String formatToStylish(Map<String, Object> file1, Map<String, Object> file2) {
-        List<Map<String, Object>> list = MapComparator.mapDiff(file1, file2);
+    public static String formatToStylish(List<Map<String, Object>> list) {
         Map<String, Object> result = new LinkedHashMap<>();
         for (Map<String, Object> map: list) {
             if (map.get("status") == "same") {

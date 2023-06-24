@@ -10,26 +10,9 @@ import java.util.Map;
 
 public class Json {
 
-    public static String formatToJson(Map<String, Object> file1, Map<String, Object> file2)
+    public static String formatToJson(List<Map<String, Object>> list)
             throws JsonProcessingException {
-        List<Map<String, Object>> list = MapComparator.mapDiff(file1, file2);
-        Map<String, Object> result = new LinkedHashMap<>();
-        for (Map<String, Object> map: list) {
-            if (map.get("status") == "same") {
-                result.put("  " + map.get("field"), map.get("old value"));
-            }
-            if (map.get("status") == "removed") {
-                result.put("- " + map.get("field"), map.get("old value"));
-            }
-            if (map.get("status") == "added") {
-                result.put("+ " + map.get("field"), map.get("new value"));
-            }
-            if (map.get("status") == "updated") {
-                result.put("- " + map.get("field"), map.get("old value"));
-                result.put("+ " + map.get("field"), map.get("new value"));
-            }
-        }
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(result);
+        return objectMapper.writeValueAsString(list);
     }
 }
