@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BaseFormatter {
-    public static String selectFormat(String format, List<Map<String, Object>> list)
+    public static String format(String format, List<Map<String, Object>> list)
             throws JsonProcessingException {
         return switch (format) {
             case "stylish" -> Stylish.formatToStylish(list);

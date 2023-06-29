@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,19 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public final class DifferTest {
 
     private String absolutePath;
-    private static final String EXPECTED_JSON;
-    private static final String EXPECTED_PLAIN;
-    private static final String EXPECTED_STYLISH;
-
-    static {
-        try {
-            EXPECTED_JSON = readFile("src/test/resources/test_json");
-            EXPECTED_PLAIN = readFile("src/test/resources/test_plain");
-            EXPECTED_STYLISH = readFile("src/test/resources/test_stylish");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private static String EXPECTED_JSON;
+    private static String EXPECTED_PLAIN;
+    private static String EXPECTED_STYLISH;
+    @BeforeAll
+    public static void beforeAll() throws IOException {
+        EXPECTED_JSON = readFile("src/test/resources/test_json");
+        EXPECTED_PLAIN = readFile("src/test/resources/test_plain");
+        EXPECTED_STYLISH = readFile("src/test/resources/test_stylish");
     }
+
 
     @BeforeEach
     void initEach() throws IOException {

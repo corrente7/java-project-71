@@ -27,16 +27,8 @@ public final class App implements Callable {
 
     @Override
     public Object call() throws Exception {
-        System.out.println(Differ.generate(getFilepath1(), getFilepath2(), format));
+        System.out.println(Differ.generate(filepath1, filepath2, format));
         return 0;
-    }
-
-    public static String getFilepath1() {
-        return filepath1;
-    }
-
-    public static String getFilepath2() {
-        return filepath2;
     }
 }
 

@@ -23,7 +23,7 @@ public class Parser {
         return map;
     }
 
-    static Map detectTypeFile(String filepath, String extension) throws Exception {
+    static Map parseData(String filepath, String extension) throws Exception {
         return switch (extension) {
             case ".json" -> Parser.getJsonData(filepath);
             case ".yaml" -> Parser.getYamlData(filepath);

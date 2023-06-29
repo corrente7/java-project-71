@@ -12,10 +12,10 @@ public class Differ {
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
         String extension1 = getExtension(filepath1);
         String extension2 = getExtension(filepath2);
-        Map<String, Object> file1 = Parser.detectTypeFile(filepath1, extension1);
-        Map<String, Object> file2 = Parser.detectTypeFile(filepath2, extension2);
+        Map<String, Object> file1 = Parser.parseData(filepath1, extension1);
+        Map<String, Object> file2 = Parser.parseData(filepath2, extension2);
         List<Map<String, Object>> list = MapComparator.mapDiff(file1, file2);
-        return BaseFormatter.selectFormat(format, list);
+        return BaseFormatter.format(format, list);
     }
 
     public static String generate(String filepath1, String filepath2) throws Exception {
